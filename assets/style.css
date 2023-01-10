@@ -1,19 +1,37 @@
+/* Import font from Google api */
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+
+:root {
+  --mainColor: #3C1934;
+  --secondaryColor: #AA3619;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html,
+html {
+  max-width: 1280px;
+  margin: 0 auto;
+  scroll-behavior: smooth;
+  background-color: var(--mainColor);
+  color: white;
+}
+
+
 body,
 .wrapper {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: var(--mainColor);
+  color: white;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Comfortaa, sans-serif;
   background-color: #f9fbfd;
 }
 
@@ -23,11 +41,12 @@ body {
   padding-right: 20px;
 }
 
-header {
+header, footer {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+  color: white;
+  background-color: var(--mainColor);
 }
 
 .card {
@@ -48,6 +67,16 @@ header {
   width: 100%;
   background: #e7e9eb;
   height: 2px;
+}
+
+legend {
+  text-align: center;
+}
+
+.checkboxes {
+  display:flex;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 .card-body {
@@ -74,18 +103,26 @@ header {
 
 .btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
-  border-radius: 25px;
+  background-color: var(--secondaryColor);
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
   color: hsl(0, 0%, 100%);
   display: inline-block;
+  font-family: Comfortaa;
   font-size: 22px;
   line-height: 22px;
   margin: 16px 16px 16px 20px;
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--mainColor);
 }
 
 button[disabled] {
@@ -119,6 +156,11 @@ button[disabled] {
 }
 
 @media (max-width: 690px) {
+  .checkboxes {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
   .btn {
     font-size: 1rem;
     margin: 16px 0px 0px 0px;
