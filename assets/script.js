@@ -42,13 +42,14 @@ function getPasswordOptions() {
     if (isNaN(passLenOpt)) {
         alert('Invalid input. Please enter a number.');
     }
-  }while(passLenOpt < 10 || passLenOpt > 64 || isNaN(passLenOpt))
+  } while(passLenOpt < 10 || passLenOpt > 64 || isNaN(passLenOpt))
   return passLenOpt;
 }
 
 // Stored repeat to get user's character type choices for each type
 function charChoices(typeChoice, charText) {
-  return typeChoice = confirm(`Do you want to include ${charText} characters in your passphrase?`);
+  typeChoice = confirm(`Do you want to include ${charText} characters in your passphrase?`);
+  return typeChoice;
 }
 
 // Provide instructions in alert for what options user will get
@@ -81,11 +82,14 @@ function getCharChoices() {
 
 // Create new array charSelect from the true choices made in getCharChoices
 function createNewArray(choiceOpt) {
+  // For loop over the choiceOpt looking at true/false values in even indices
   for(let i = 0; i < choiceOpt.length; i+=2) {
     if (choiceOpt[i]) {
-    charOptions.push(choiceOpt[i+1])
+      // Push each true array into charOptions
+      charOptions.push(choiceOpt[i+1])
     }
   }
+  // Arrange the array of arrays into one single array
   charSelect = [].concat.apply([], charOptions);
   return charSelect;
 }
@@ -93,11 +97,27 @@ function createNewArray(choiceOpt) {
 // Function for getting random characters from our newly created array, 
 // to fill our userPawword with the correct number of characters
 function getRandom(charSelect, passLenOptInput) {
+  // Choose random characters from charSelect until passLenOptInput is filled with the correct number
   for(i = 0; i < passLenOptInput; i++) {
     let addChar = Math.floor(Math.random() * (charSelect.length));
     userPassword += charSelect[addChar];
   }
   return userPassword;
+}
+
+// Reset stored variable values
+function resetOpt() {
+  specOptX = false;
+  numOptX = false;
+  lowerOptX = false;
+  upperOptX = false;
+  specOpt = false;
+  numOpt = false;
+  lowerOpt = false;
+  upperOpt = false;
+  charOptions.length = 0;
+  charSelect.length = 0;
+  userPassword = '';
 }
 
 // THIS IS WHERE THE CODE BEGINS TO RUN
@@ -117,6 +137,8 @@ function writePassword() {
   // 5. Display password in html textbox
   let passwordText = document.querySelector('#password');
   passwordText.value = userPassword;
+  // 6. Reset stored options so user can generate a new password without refreshing the page
+  resetOpt();
 }
 
 // Add event listener to generate button

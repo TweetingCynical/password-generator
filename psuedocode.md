@@ -8,7 +8,7 @@
   - Booleans for included character types;
 * User confirm messages to get character type selection;
   - Check that user has made at least one choice;
-* Function to handle producing a random number between two ints x and y inclusive;
 * Concat the character type choices into one array;
+* Function to handle producing a random number between two ints x and y inclusive;
 * While newPassword < passwordLenChoice, choose random from concat, add to newPassword string;
 * Display password in passwordText textbox in html

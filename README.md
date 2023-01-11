@@ -1,79 +1,106 @@
-# Module 5 Challenge: Password Generator
+# Password Generator
 
-## Overview
- 
-This week’s challenge requires you to create an application that an employee can use to generate a random password based on criteria they’ve selected by modifying starter code. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished user interface that is responsive, ensuring that it adapts to multiple screen sizes.
+## A simple password generator, interacting with the html elements, and collecting user inputs from a series of validated prompts
 
-The password can include special characters. If you’re unfamiliar with these, see this [list of Password Special Characters from the OWASP Foundation](https://www.owasp.org/index.php/Password_special_characters).
+### Deployment / Code Repository
 
-## Instructions
+[Live deployment](https://tweetingcynical.github.io/password-generator/)
 
-The following image shows the web application's appearance and functionality:
+[Repository](https://github.com/TweetingCynical/password-generator)
 
-![password generator demo](./assets/05-javascript-challenge-demo.png)
+### Scope and Purpose
 
+Build a password generator which asks the user how many characters they would like to include, and they type of those characters.
 
-* Generate a password when the button is clicked
-  * Present a series of prompts for password criteria
-    * Length of password
-      * At least 10 characters but no more than 64.
-    * Character types
-      * Lowercase
-      * Uppercase
-      * Numeric
-      * Special characters ($@%&*, etc)
-  * Code should validate for each input and at least one character type should be selected
-  * Once prompts are answered then the password should be generated and displayed in an alert or written to the page
+### Installation
 
-## Grading Requirements
+N/A
 
-This challenge is graded based on the following criteria: 
+### Pseudocode
 
-### Technical Acceptance Criteria: 40%
+Steps to achieving the working game:
 
-* Satisfies all of the above acceptance criteria plus the following:
+* Declare variables needed for the process:
+  - Different character types;
+  - Password length choice;
+  - Booleans for included character types;
+* User confirm messages to get character type selection;
+  - Check that user has made at least one choice;
+* Concat the character type choices into one array;
+* Function to handle producing a random number between two ints x and y inclusive;
+* While newPassword < passwordLenChoice, choose random from concat, add to newPassword string;
+* Display password in passwordText textbox in html
 
-  * The challenge should not produce any errors in the console when you inspect it using Chrome DevTools.
+### Overview of Build
 
-### Deployment: 32%
+Some of the key JavaScript skills being utilised:
+- Use of an array to store the hand history;
+- Use of functions to store steps in code;
+- Use of IsNaN and parseInt to ensure user inputs a number:
 
-* Application deployed at live URL.
+    ```javascript
+    const passLenStr = prompt('How long would you like your passphrase? Enter a number between 10 and 64');
+    // Convert user input to integer
+    passLenOpt = parseInt(passLenStr);
+    // Error message if input was not an integer
+    if (isNaN(passLenOpt)) {
+        alert('Invalid input. Please enter a number.');
+    }
+    ```
 
-* Application loads with no errors.
+- Use of single and multiple arguments passed through function to limit amount of code used to create password;
 
-* Application GitHub URL submitted.
+    ```javascript
+    let choiceOpt = getCharChoices();
+    // 3. Combine correct character choices into new array
+    charSelect = createNewArray(choiceOpt);
+    // 4. Fill userPassword with for loop of random characters from step 3, until password length is reached
+    userPassword = getRandom(charSelect, passLenOptInput);
+    ```
 
-* GitHub repository that contains application code.
+- Use of Math.floor() and Maths.random() inside for loop for selecting random elements from charSelect to fill userPassword string with passLenOptInput length:
+    
+    ```javascript
+    function getRandom(charSelect, passLenOptInput) {
+      // Choose random characters from charSelect until passLenOptInput is filled with the correct number
+      for(i = 0; i < passLenOptInput; i++) {
+        let addChar = Math.floor(Math.random() * (charSelect.length));
+        userPassword += charSelect[addChar];
+      }
+      return userPassword;
+    }
+    ```
 
-### Application Quality: 15%
+- Use of .concat.apply to create one single array (charSelect) from nested array (charOptions):
 
-* Application user experience is intuitive and easy to navigate.
+    ```javascript
+    // Arrange the array of arrays into one single array
+    charSelect = [].concat.apply([], charOptions);
+    return charSelect;
+    ```
 
-* Application user interface style is clean and polished.
+- Write password code block to run all the functions in the correct order;
+- Reset options so that the user can generate a new password without refreshing the page.
 
-* Application resembles the mock-up functionality provided in the challenge instructions.
+## Suggested future changes
 
-### Repository Quality: 13%
+- Add checkboxes to html page so that user can select their options without using alerts, prompts and confirm;
+- ✅ ~~Add a reset code block so new passwords can be generated without refreshing the page;~~
+- Add code for if cancel button is selected on initial prompt for password length;
 
-* Repository has a unique name.
+## Screenshot
 
-* Repository follows best practices for file structure and naming conventions.
+Working version of site should look like this at standard screen size:
+![Site Screenshot](./assets/screenshot.png)
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+## License
 
-* Repository contains multiple descriptive commit messages.
+MIT License
 
-* Repository contains quality README file with description, screenshot, and link to deployed application.
+Copyright (c) 2022 TweetingCynical
 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-## Review
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
----
-
-© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
