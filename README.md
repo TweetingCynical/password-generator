@@ -86,7 +86,7 @@ Some of the key JavaScript skills being utilised:
 
 - Add checkboxes to html page so that user can select their options without using alerts, prompts and confirm;
 - ✅ ~~Add a reset code block so new passwords can be generated without refreshing the page;~~
-- Add code for if cancel button is selected on initial prompt for password length;
+- Add code for when cancel button is selected on initial prompt for password length;
 
 ## Screenshot
 
