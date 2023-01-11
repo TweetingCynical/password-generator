@@ -27,18 +27,23 @@ let lowerOpt = false;
 let upperOpt = false;
 const charOptions = [];
 let charSelect = [];
+let userPassword = '';
 
 // Function to prompt user for password options
 function getPasswordOptions() {
   // Password length while loop to validate number entry
   let passLenOpt = 0;
+  // Keep asking for a password length until user chooses a number between 10 and 64 inclusive
   do {
     const passLenStr = prompt('How long would you like your passphrase? Enter a number between 10 and 64');
+    // Convert user input to integer
     passLenOpt = parseInt(passLenStr);
+    // Error message if input was not an integer
     if (isNaN(passLenOpt)) {
         alert('Invalid input. Please enter a number.');
     }
   }while(passLenOpt < 10 || passLenOpt > 64 || isNaN(passLenOpt))
+  return passLenOpt;
 }
 
 // Stored repeat to get user's character type choices for each type
@@ -46,6 +51,7 @@ function charChoices(typeChoice, charText) {
   return typeChoice = confirm(`Do you want to include ${charText} characters in your passphrase?`);
 }
 
+// Provide instructions in alert for what options user will get
 function getCharChoices() {
   alert(`
   You will now choose whether to include the following character types:
@@ -55,6 +61,7 @@ function getCharChoices() {
   - specials (e.g. % or &)
   
   Please choose at least one option on the prompts that follow.`)
+  // While loop to ensure user has chosen as least one of the categories
   while (!lowerOptX && !upperOptX && !numOptX && !specOptX) {
     lowerOptX = charChoices(lowerOpt, "lower case");
     upperOptX = charChoices(upperOpt, "upper case");
@@ -68,9 +75,11 @@ function getCharChoices() {
   numOpt = numOptX;
   specOpt = specOptX;
 
+  // Output a new array with the true/false and arrays of the characters to be passed into createNewArray function
   return choiceOpt = [lowerOpt, lowerCasedCharacters, upperOpt, upperCasedCharacters, numOpt, numericCharacters, specOpt, specialCharacters]
 }
 
+// Create new array charSelect from the true choices made in getCharChoices
 function createNewArray(choiceOpt) {
   for(let i = 0; i < choiceOpt.length; i+=2) {
     if (choiceOpt[i]) {
@@ -81,33 +90,34 @@ function createNewArray(choiceOpt) {
   return charSelect;
 }
 
-// Function for getting a random element from an array
-function getRandom(charSelect) {
-console.log(charSelect)
+// Function for getting random characters from our newly created array, 
+// to fill our userPawword with the correct number of characters
+function getRandom(charSelect, passLenOptInput) {
+  for(i = 0; i < passLenOptInput; i++) {
+    let addChar = Math.floor(Math.random() * (charSelect.length));
+    userPassword += charSelect[addChar];
+  }
+  return userPassword;
 }
 
-// Function to generate password with user input
-function generatePassword() {
-password = `This is a test...`
-return password;
-}
-
+// THIS IS WHERE THE CODE BEGINS TO RUN
 // Get references to the #generate element
 const generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
-  passwordText.value = password;
+  // 1. Get desired password length
+  let passLenOptInput = getPasswordOptions();
+  // 2. Get desired character types to include
+  let choiceOpt = getCharChoices();
+  // 3. Combine correct character choices into new array
+  charSelect = createNewArray(choiceOpt);
+  // 4. Fill userPassword with for loop of random characters from step 3, until password length is reached
+  userPassword = getRandom(charSelect, passLenOptInput);
+  // 5. Display password in html textbox
+  let passwordText = document.querySelector('#password');
+  passwordText.value = userPassword;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
-
-// Run code
-getPasswordOptions();
-getCharChoices();
-createNewArray(choiceOpt);
-getRandom(charSelect);
