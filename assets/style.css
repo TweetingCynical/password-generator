@@ -1,6 +1,7 @@
 /* Import font from Google api */
 @import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
 
+/* Add stored options for main and secondary colours used in site */
 :root {
   --mainColor: #3C1934;
   --secondaryColor: #AA3619;
@@ -67,16 +68,6 @@ header, footer {
   width: 100%;
   background: #e7e9eb;
   height: 2px;
-}
-
-legend {
-  text-align: center;
-}
-
-.checkboxes {
-  display:flex;
-  justify-content: space-around;
-  padding: 10px;
 }
 
 .card-body {
@@ -155,6 +146,7 @@ button[disabled] {
   overflow: hidden;
 }
 
+/* Media queries for adjusting to smaller screen sizes */
 @media (max-width: 690px) {
   .checkboxes {
     flex-direction: column;
