@@ -18,7 +18,7 @@ N/A
 
 ### Pseudocode
 
-Steps to achieving the working game:
+Steps to achieving the working generator:
 
 * Declare variables needed for the process:
   - Different character types;
