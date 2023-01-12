@@ -77,7 +77,8 @@ function getCharChoices() {
   specOpt = specOptX;
 
   // Output a new array with the true/false and arrays of the characters to be passed into createNewArray function
-  return choiceOpt = [lowerOpt, lowerCasedCharacters, upperOpt, upperCasedCharacters, numOpt, numericCharacters, specOpt, specialCharacters]
+  const choiceOpt = [lowerOpt, lowerCasedCharacters, upperOpt, upperCasedCharacters, numOpt, numericCharacters, specOpt, specialCharacters]
+  return choiceOpt;
 }
 
 // Create new array charSelect from the true choices made in getCharChoices
