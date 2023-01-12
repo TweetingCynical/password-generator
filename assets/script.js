@@ -25,7 +25,6 @@ let specOpt = false;
 let numOpt = false;
 let lowerOpt = false;
 let upperOpt = false;
-const charOptions = [];
 let charSelect = [];
 let userPassword = '';
 
@@ -86,12 +85,10 @@ function createNewArray(choiceOpt) {
   // For loop over the choiceOpt looking at true/false values in even indices
   for(let i = 0; i < choiceOpt.length; i+=2) {
     if (choiceOpt[i]) {
-      // Push each true array into charOptions
-      charOptions.push(choiceOpt[i+1])
+      // Concat each true array into charSelect
+      charSelect = charSelect.concat(choiceOpt[i+1]);
     }
   }
-  // Arrange the array of arrays into one single array
-  charSelect = [].concat.apply([], charOptions);
   return charSelect;
 }
 
@@ -116,7 +113,6 @@ function resetOpt() {
   numOpt = false;
   lowerOpt = false;
   upperOpt = false;
-  charOptions.length = 0;
   charSelect.length = 0;
   userPassword = '';
 }
@@ -144,3 +140,11 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
+
+const choiceOpt = {
+  lowerOpt: {array: lowerCasedCharacters, boolean: lowerOpt}, 
+  upperOpt: {array: upperCasedCharacters, boolean: upperOpt},
+  numOpt: {array: numericCharacters, boolean: numOpt},
+  specOpt: {array: specialCharacters, boolean: specOpt}
+}
