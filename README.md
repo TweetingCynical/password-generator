@@ -10,7 +10,7 @@
 
 ### Scope and Purpose
 
-Build a password generator which asks the user how many characters they would like to include, and they type of those characters.
+Build a password generator which asks the user how many characters they would like to include, and the type of those characters.
 
 ### Installation
 
