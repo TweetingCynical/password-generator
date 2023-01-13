@@ -142,9 +142,10 @@ function writePassword() {
 generateBtn.addEventListener('click', writePassword);
 
 
-const choiceOpt = {
-  lowerOpt: {array: lowerCasedCharacters, boolean: lowerOpt}, 
-  upperOpt: {array: upperCasedCharacters, boolean: upperOpt},
-  numOpt: {array: numericCharacters, boolean: numOpt},
-  specOpt: {array: specialCharacters, boolean: specOpt}
-}
+// For future development
+// const choiceOpt = {
+//   lowerOpt: {array: lowerCasedCharacters, boolean: lowerOpt}, 
+//   upperOpt: {array: upperCasedCharacters, boolean: upperOpt},
+//   numOpt: {array: numericCharacters, boolean: numOpt},
+//   specOpt: {array: specialCharacters, boolean: specOpt}
+// }
